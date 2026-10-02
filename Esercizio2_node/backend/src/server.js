@@ -11,11 +11,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../../frontend/public")));
 
+app.get("/", (req, res) =>{ //when the user accesses localhost:3000 he must specify the path /login to access the login page, otherwise he will a get error
+    res.sendFile(path.join(__dirname, "../../frontend/public/index.html"));
+});
+
+
 //pagina di login
-app.get("/login", (req, res) =>{ //when the user accesses localhost:3000 he must specify the path /login to access the login page, otherwise he will a get error
+app.get("/login", (req, res) =>{ 
     res.sendFile(path.join(__dirname, "../../frontend/public/login.html"));
 });
 
+//pagina about
+app.get("/about", (req, res) =>{
+    res.sendFile(path.join(__dirname, "../../frontend/public/about.html"));
+});
+
+//pagina di signing
+app.get("/signing", (req, res) =>{ 
+    res.sendFile(path.join(__dirname, "../../frontend/public/signing.html"));
+});
 
 
 
