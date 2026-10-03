@@ -1,4 +1,4 @@
-document.getElementById('weatherForm').addEventListener('submit', async function(e) {
+document.getElementById('weather-response-box subtitle').addEventListener('submit', async function(e) {
     e.preventDefault(); // Prevent the form from submitting normally
 
     var city = document.getElementById('city-input').value;

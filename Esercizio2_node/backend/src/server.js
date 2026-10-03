@@ -52,7 +52,7 @@ app.post('/login', (req, res) =>{
 //post per il weather, riceve la città dal form e invia una risposta con le informazioni meteorologiche
 app.post('/weather', (req, res) =>{
     const{city} = req.body;
-
+    console.log(city);
     // Simula una chiamata API per ottenere le informazioni meteorologiche
     // In un'applicazione reale, qui verrebbe effettivamente chiamata una API meteorologica
     const weatherData = `Hai richiesto il tempo per: ${city}`;
