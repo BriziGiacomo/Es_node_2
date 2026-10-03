@@ -15,5 +15,12 @@
             .then(res => res.text())
             .then(html => document.getElementById('navbar').innerHTML = html) 
     </script>
+    <div id="footer">
+    <script>
+        fetch('components/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html)
+    </script>
+    
 </body>
 </html>

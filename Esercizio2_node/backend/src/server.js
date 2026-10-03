@@ -31,6 +31,11 @@ app.get("/signing", (req, res) =>{
     res.sendFile(path.join(__dirname, "../../frontend/public/signing.html"));
 });
 
+app.get("/weather", (req, res) =>{ 
+    res.sendFile(path.join(__dirname, "../../frontend/public/weather.html"));
+});
+
+
 
 
 //post per il login, se username e password sono corretti, invia un messaggio di successo, altrimenti invia un messaggio di errore
@@ -43,6 +48,18 @@ app.post('/login', (req, res) =>{
         res.send('Login fallito. <br> Username inserito: ' + username + ' <br> Password inserita: ' + password + '.');
     }
 });
+
+//post per il weather, riceve la città dal form e invia una risposta con le informazioni meteorologiche
+app.post('/weather', (req, res) =>{
+    const{city} = req.body;
+
+    // Simula una chiamata API per ottenere le informazioni meteorologiche
+    // In un'applicazione reale, qui verrebbe effettivamente chiamata una API meteorologica
+    const weatherData = `Hai richiesto il tempo per: ${city}`;
+
+    res.send(weatherData);
+});
+
 
 
 //definizione dello stato visualizzabile da prompt
