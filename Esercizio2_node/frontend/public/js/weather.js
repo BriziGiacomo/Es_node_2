@@ -1,4 +1,4 @@
-document.getElementById('weather-response-box subtitle').addEventListener('submit', async function(e) {
+document.getElementById('weather-form').addEventListener('submit', async function(e) {
     e.preventDefault(); // Prevent the form from submitting normally
 
     var city = document.getElementById('city-input').value;
@@ -8,15 +8,15 @@ document.getElementById('weather-response-box subtitle').addEventListener('submi
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ city: city })
+        body: JSON.stringify({ city })
     });
 
     const data = await res.text();
-    document.getElementById('weather-result').innerHTML =
+    document.getElementById('weather-result').innerHTML =`
         <div class="weather-response-box subtitle">
             ${data}
         </div>
-    ;
+    `;
 
     document.getElementById('weather-result').style.display = 'block'; 
 });

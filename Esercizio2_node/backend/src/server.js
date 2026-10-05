@@ -15,7 +15,6 @@ app.get("/", (req, res) =>{ //when the user accesses localhost:3000 he must spec
     res.sendFile(path.join(__dirname, "../../frontend/public/index.html"));
 });
 
-
 //pagina di login
 app.get("/login", (req, res) =>{ 
     res.sendFile(path.join(__dirname, "../../frontend/public/login.html"));
@@ -34,9 +33,6 @@ app.get("/signing", (req, res) =>{
 app.get("/weather", (req, res) =>{ 
     res.sendFile(path.join(__dirname, "../../frontend/public/weather.html"));
 });
-
-
-
 
 //post per il login, se username e password sono corretti, invia un messaggio di successo, altrimenti invia un messaggio di errore
 app.post('/login', (req, res) =>{
@@ -64,8 +60,8 @@ app.post('/weather', (req, res) =>{
 
 //definizione dello stato visualizzabile da prompt
 app.listen(port, ()=> {
-console.log("Server in ascolto alla porta " + port);
-console.log('accedi all indirizzo http://localhost:'+port)
+    console.log("Server in ascolto alla porta " + port);
+    console.log('accedi all indirizzo http://localhost:'+port)
 });
 
 
