@@ -11,13 +11,22 @@ document.getElementById('weather-form').addEventListener('submit', async functio
         body: JSON.stringify({ city })
     });
 
-    const data = await res.text();
-    document.getElementById('weather-result').innerHTML =`
+    const data = await res.json();
+    const box=document.getElementById('weather-result');
+
+    box.style.display = 'block'; 
+    if(data.error){
+        box.innerHTML = `<div class="weather-response-box subtitle">${data.message}</div>`;
+    }
+
+    box.innerHTML = `
         <div class="weather-response-box subtitle">
-            ${data}
+            <strong>${data.city}</strong> <br>
+            ${data.description} <br>
+            Temperatura: ${data.temperature}°C<br>
+            Umidità: ${data.humidity}%<br>
+            Vento: ${data.wind} m/s<br>
         </div>
     `;
-
-    document.getElementById('weather-result').style.display = 'block'; 
 });
 

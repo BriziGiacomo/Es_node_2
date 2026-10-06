@@ -46,17 +46,47 @@ app.post('/login', (req, res) =>{
 });
 
 //post per il weather, riceve la città dal form e invia una risposta con le informazioni meteorologiche
-app.post('/weather', (req, res) =>{
+app.post('/weather', async (req, res) =>{
     const{city} = req.body;
     console.log(city);
-    // Simula una chiamata API per ottenere le informazioni meteorologiche
-    // In un'applicazione reale, qui verrebbe effettivamente chiamata una API meteorologica
-    const weatherData = `Hai richiesto il tempo per: ${city}`;
+    
+    const apiKey="f66274f8e26faa7e083092680d39fc79";
 
-    res.send(weatherData);
+    try{
+
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=it`
+        );
+
+        const data = await response.json();
+
+        if(data.cod !== 200){
+            return res.json({
+                error:true,
+                message: "Città non trovata"
+            });
+        }
+
+        // risposta json pulita
+        res.json({
+            city: data.name,
+            description: data.weather[0].description,
+            icon: data.weather[0].icon,
+            temperature: data.main.temp,
+            humidity: data.main.humidity,
+            wind: data.wind.speed
+        });
+
+    }catch(err){
+        console.error(err);
+        res.json({
+            error:true,
+            message: "Errore nel server"
+        });
+    }
+    
+    
 });
-
-
 
 //definizione dello stato visualizzabile da prompt
 app.listen(port, ()=> {
