@@ -1,17 +1,17 @@
-const axios = require("axios"); // Importa axios per fare richieste HTTP all'API meteo.
+const fetch = require("node-fetch"); // Importa node-fetch per fare richieste HTTP (non utilizzato in questo codice).
 
-// Definisce la funzione che gestisce la richiesta POST /weather.
-const getWeather = async (req, res) => {
+
+module.exports.weatherController = async (req, res) => {
     const city = req.body.city; // Estrae il nome della città dal corpo della richiesta JSON.
-    const apiKey = "c28acc12768cc42c658f08d6c9839b40"; // Chiave API per OpenWeatherMap.
+    const apiKey = "f66274f8e26faa7e083092680d39fc79";
 
     try { // Inizia un blocco per catturare eventuali errori.
         // Chiama l'API di OpenWeatherMap passando città, chiave e unità metriche.
-        const response = await axios.get(
+        const response = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`
         );
 
-        const data = response.data; // Estrae i dati JSON dalla risposta.
+        const data = await response.json();
 
         // Se la risposta HTTP non è 200, la città non è stata trovata.
         if (response.status !== 200) {
@@ -39,5 +39,3 @@ const getWeather = async (req, res) => {
         });
     }
 };
-
-module.exports = { getWeather }; // Esporta la funzione per usarla nelle route.
