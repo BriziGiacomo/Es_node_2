@@ -1,5 +1,5 @@
 const fetch = require("node-fetch"); // Importa node-fetch per fare richieste HTTP (non utilizzato in questo codice).
-const {validayeCity} = require("../utils/validateCity"); // Importa la funzione validateCity dal modulo utils.
+const {validateCity} = require("../utils/validateCity"); // Importa la funzione validateCity dal modulo utils.
 const { getWeather } = require("../utils/apiClient"); // Importa la funzione getWeather dal modulo utils.
 const { logError } = require("../utils/logger"); // Importa la funzione logError dal modulo utils.
 const {WEATHER_API_KEY} = require("../utils/constant"); // Importa la chiave API dal file di configurazione.
