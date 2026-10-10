@@ -14,8 +14,8 @@ app.use("/", pageRoutes);    // Usa le routes definite in pageroutes.js per gest
 const weatherRoutes = require("./route/weather"); // Importa le routes per le richieste meteo.
 app.use("/", weatherRoutes); // Usa le routes definite in weather.js per gestire le richieste meteo.
 
-//const authRoutes = require("./route/auth"); // Importa le routes per l'autenticazione.
-//app.use("/", authRoutes); // Usa le routes definite in auth.js per gestire le richieste di autenticazione.
+const authRoutes = require("./route/auth"); // Importa le routes per l'autenticazione.
+app.use("/", authRoutes); // Usa le routes definite in auth.js per gestire le richieste di autenticazione.
 
 
 app.use(express.static(path.join(__dirname, "../../../frontend/public"))); // Serve i file statici della cartella public.
